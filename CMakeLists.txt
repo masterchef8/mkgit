@@ -7,10 +7,10 @@ set(EXECUTABLE_OUTPUT_PATH build/${CMAKE_BUILD_TYPE})
 file(
 	GLOB_RECURSE
 	sources
-	mkgit.c/*
+	mkgit.c/test.*
 )
 
 add_executable(
 	main.out
 	${sources}
-mkgit.c/test.h mkgit.c/test.c)
+)
