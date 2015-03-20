@@ -9,6 +9,12 @@ This project uses CMake for building.
 cmake && make
 ```
 
+If you haven't set default cmake behaviour, try
+
+```bash 
+cmake -G "Unix Makefiles"
+```
+
 ## Usage
 ```bash
 mkgit <directory> ["<Readme message>"]
