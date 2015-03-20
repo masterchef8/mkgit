@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     FILE *readme = NULL;
 
     if (argc < 2 || argc > 3) {
-        perror("Usage : mkdir <directory> [\"<Readme message>\"]");
+        perror("Usage : mkgit <directory> [\"<Readme message>\"]");
         return 2;
     }
 
