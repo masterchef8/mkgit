@@ -16,6 +16,8 @@ int main(int argc, char** argv) {
     git_repository *repo = NULL;
     FILE *readme = NULL;
 
+    git_threads_init();
+
     /* Check if we have the right number of arguments */
     if (argc < 2 || argc > 3) {
         perror("Usage : mkgit <directory> [\"<Readme message>\"]");
@@ -75,6 +77,8 @@ int main(int argc, char** argv) {
         /* Closing file. */
         fclose(readme);
     }
+
+    git_threads_shutdown();
 
     return 0;
 }
