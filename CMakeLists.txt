@@ -8,13 +8,13 @@ set(EXECUTABLE_OUTPUT_PATH build/${CMAKE_BUILD_TYPE})
 file(
 	GLOB_RECURSE
 	sources
-	mkgit.c/test.*
+	mkgit.c/mkgit_gabriel.c
 )
 
 add_executable(
-	main.out
+	mkgit
 	${sources}
 )
 
 link_directories(${CMAKE_BINARY_DIR}/res)
-target_link_libraries(main.out git2)
+target_link_libraries(mkgit git2)
