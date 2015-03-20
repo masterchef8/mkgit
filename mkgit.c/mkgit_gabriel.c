@@ -12,15 +12,17 @@
 
 int main(int argc, char** argv) {
     int success_create = 0;
-    git_repository *repo = NULL;
     int error = 0;
+    git_repository *repo = NULL;
     FILE *readme = NULL;
 
+    /* Check if we have the right number of arguments */
     if (argc < 2 || argc > 3) {
         perror("Usage : mkgit <directory> [\"<Readme message>\"]");
         return 2;
     }
 
+    /* Creating folder and check if no error. */
     success_create = mkdir(argv[1], 0775);
 
     if (success_create != 0) {
@@ -28,11 +30,18 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    /* Initializing git repository in newly created folder.
+    * NO IMPLEMENTED ERROR CHECKING HERE. */
     error = git_repository_init(&repo, argv[1], false);
 
+    /* If we have a README message, we have to create a file and
+    * fill it with some text. */
     if (argc == 3) {
         char *readme_path = malloc(sizeof(char) * 1024);
         char *line = malloc(sizeof(char) * 1024);
+
+        /* Building string for README filename,
+        * creating file and checking errors. */
         strcpy(readme_path, argv[1]);
         strcat(readme_path, "/README.md");
         readme = fopen(readme_path, "w+");
@@ -42,6 +51,8 @@ int main(int argc, char** argv) {
             return 4;
         }
 
+        /* Building string for README title (first line)
+        * and checking errors. */
         strcpy(line, "# ");
         strcat(line, argv[1]);
         strcat(line, "\n");
@@ -51,6 +62,8 @@ int main(int argc, char** argv) {
             return 3;
         }
 
+        /* Building string for README message (second line)
+        * and checking errors. */
         strcpy(line, argv[2]);
         strcat(line, "\n");
         error = fputs(line, readme);
@@ -59,6 +72,7 @@ int main(int argc, char** argv) {
             return 3;
         }
 
+        /* Closing file. */
         fclose(readme);
     }
 
