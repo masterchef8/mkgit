@@ -4,6 +4,7 @@ project(mkgit)
 
 set(EXECUTABLE_OUTPUT_PATH build/${CMAKE_BUILD_TYPE})
 
+
 file(
 	GLOB_RECURSE
 	sources
@@ -14,3 +15,6 @@ add_executable(
 	main.out
 	${sources}
 )
+
+link_directories(${CMAKE_BINARY_DIR}/res)
+target_link_libraries(main.out git2)
