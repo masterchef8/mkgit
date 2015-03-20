@@ -1,3 +1,4 @@
 *.xcodeproj
 build/
 .idea/
+res/libgit2.so.0.21.4
